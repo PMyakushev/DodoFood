@@ -10,35 +10,123 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 
 # Список логинов и паролей
-credentials = [
-    {"login": "pizzavo01", "password": "metro12345"},
-    {"login": "DODOPENZA", "password": "DODOPENZA"},
-    {"login": "DODOKURSK", "password": "DODOKURSK"},
-    {"login": "DODONOVGOROD", "password": "DODOKSTOVO"},
-    {"login": "e.maslennikova.dodo@gmail.com", "password": "metro12345"},
-    {"login": "Picca2021", "password": "Picca2021"},
-    {"login": "Dodopizzasibir", "password": "dodopizza1709"},
-    {"login": "metromgn.dodo@gmail.com", "password": "METRO123"},
-    {"login": "dodo.ufa1@gmail.com", "password": "dodo.ufa1@gmail.com"},
-    {"login": "ufa2.dodo@gmail.com", "password": "ufa2.dodo@gmail.com"},
-    {"login": "troshindodo@gmail.com", "password": "troshindodo@gmail.com"},
-    {"login": "egmaslennikova@yandex.ru", "password": "123456789"},
-    {"login": "oz3.dodo@gmail.com", "password": "123456789"},
-    {"login": "kolesnikov.dodopizza@gmail.com", "password": "Metro123"},
-    {"login": "dodo5555", "password": "dodo5555"},
-    {"login": "v.pishma.dodo@gmail.com", "password": "Dodopizza21"},
-    {"login": "n.tagil.dodo@gmail.com", "password": "Dodopizza21"},
-    {"login": "egmasl@yandex.ru", "password": "egmasl@yandex.ru"},
-    {"login": "ORENDODO", "password": "ORENDODO"},
-    {"login": "Krasnoyarsk-dodo", "password": "zZ12345!"},
-    {"login": "DODOPRTSS", "password": "DODOPRTSS"},
-    {"login": "i.belyanskiy.dodo@gmail.com", "password": "dodo2022"},
-    {"login": "oz12.dodo", "password": "oz12.dodo"},
-    {"login": "Oz15.dodo@gmail.com", "password": "Oz15.dodo@gmail.com"},
-    {"login": "oz120.dodo", "password": "oz120.dodo"},
-    {"login": "oz25.dodo", "password": "oz25.dodo"},
-    {"login": "rp.kstovo.ms@gmail.com", "password": "metro123"},
-]
+print("Что бы выбрать СПБ нажимте - 1 \nЧто бы выбрать САМАРА нажимте - 2 \nЧто бы выбрать УФА нажимте - 3\nЧто бы выбрать ПЕНЗА нажимте - 4"
+      "\nЧто бы выбрать КУРСК нажимте - 5\nЧто бы выбрать НОВГОРОД нажимте - 6\nЧто бы выбрать ОРЕНБУРГ нажимте - 7\nЧто бы выбрать НОВОКУЗНЕЦК нажимте - 8"
+      "\nЧто бы выбрать КЕМЕРОВО нажимте - 9\nЧто бы выбрать МАГНИТОГОРСК нажимте - 10\nЧто бы выбрать ВОЛГОГРАД нажимте - 11\nЧто бы выбрать ДОМОДЕДОВО нажимте - 12"
+      "\nЧто бы выбрать МОСКВА нажимте - 13\nЧто бы выбрать КОПЕЙСК нажимте - 14\nЧто бы выбрать ПЫШМА нажимте - 15\nЧто бы выбрать ТАГИЛ нажимте - 16"
+      "\nЧто бы выбрать КРАСНОЯРСК нажимте - 17\nЧто бы выбрать БАЛАКОВО нажимте - 18\nЧто бы выбрать ТОЛЬЯТТИ нажимте - 19\nЧто бы выбрать КСТОВО нажимте - 20")
+choice = input("Введите цифру вашего города: ")
+if choice == "1":
+    print("Вы выбрали СПБ")
+    credentials = [
+        {"login": "spbplyus", "password": "12345678"},
+        {"login": "dodo.pitstza", "password": "12345678"},
+        {"login": "pizzavo01", "password": "metro12345"},
+    ]
+elif choice == "2":
+    print("Вы выбрали Самара")
+    credentials = [
+        {"login": "Oz15.dodo@gmail.com", "password": "Oz15.dodo@gmail.com"},
+        {"login": "oz120.dodo", "password": "oz120.dodo"},
+        {"login": "oz25.dodo", "password": "oz25.dodo"},
+        {"login": "DODOPRTSS", "password": "DODOPRTSS"},
+    ]
+elif choice == "3":
+    print("Вы выбрали УФА")
+    credentials = [
+        {"login": "dodo.ufa1@gmail.com", "password": "dodo.ufa1@gmail.com"},
+        {"login": "ufa2.dodo@gmail.com", "password": "ufa2.dodo@gmail.com"},
+        {"login": "troshindodo@gmail.com", "password": "troshindodo@gmail.com"},
+        {"login": "egmasl@yandex.ru", "password": "egmasl@yandex.ru"},
+    ]
+elif choice == "4":
+    print("Вы выбрали ПЕНЗА")
+    credentials = [
+        {"login": "DODOPENZA", "password": "DODOPENZA"},
+    ]
+elif choice == "5":
+    print("Вы выбрали КУРСК")
+    credentials = [
+        {"login": "DODOKURSK", "password": "DODOKURSK"},
+    ]
+elif choice == "6":
+    print("Вы выбрали НОВГОРОД")
+    credentials = [
+        {"login": "DODONOVGOROD", "password": "DODOKSTOVO"},
+    ]
+elif choice == "7":
+    print("Вы выбрали ОРЕНБУРГ")
+    credentials = [
+        {"login": "e.maslennikova.dodo@gmail.com", "password": "metro12345"},
+        {"login": "ORENDODO", "password": "ORENDODO"},
+    ]
+elif choice == "8":
+    print("Вы выбрали НОВОКУЗНЕЦК")
+    credentials = [
+        {"login": "Picca2021", "password": "Picca2021"},
+    ]
+elif choice == "9":
+    print("Вы выбрали КЕМЕРОВО")
+    credentials = [
+        {"login": "Dodopizzasibir", "password": "dodopizza1709"},
+    ]
+elif choice == "10":
+    print("Вы выбрали МАГНИТОГОРСК")
+    credentials = [
+        {"login": "metromgn.dodo@gmail.com", "password": "METRO123"},
+    ]
+elif choice == "11":
+    print("Вы выбрали ВОЛГОГРАД")
+    credentials = [
+        {"login": "egmaslennikova@yandex.ru", "password": "123456789"},
+    ]
+elif choice == "12":
+    print("Вы выбрали ДОМОДЕДОВО")
+    credentials = [
+        {"login": "oz3.dodo@gmail.com", "password": "123456789"},
+    ]
+elif choice == "13":
+    print("Вы выбрали МОСКВА")
+    credentials = [
+        {"login": "kolesnikov.dodopizza@gmail.com", "password": "Metro123"},
+    ]
+elif choice == "14":
+    print("Вы выбрали КОПЕЙСК")
+    credentials = [
+        {"login": "dodo5555", "password": "dodo5555"},
+    ]
+elif choice == "15":
+    print("Вы выбрали ПЫШМА")
+    credentials = [
+        {"login": "v.pishma.dodo@gmail.com", "password": "Dodopizza21"},
+    ]
+elif choice == "16":
+    print("Вы выбрали ТАГИЛ")
+    credentials = [
+        {"login": "n.tagil.dodo@gmail.com", "password": "Dodopizza21"},
+    ]
+elif choice == "17":
+    print("Вы выбрали КРАСНОЯРСК")
+    credentials = [
+        {"login": "Krasnoyarsk-dodo", "password": "zZ12345!"},
+    ]
+elif choice == "18":
+    print("Вы выбрали БАЛАКОВО")
+    credentials = [
+        {"login": "i.belyanskiy.dodo@gmail.com", "password": "dodo2022"},
+    ]
+elif choice == "19":
+    print("Вы выбрали ТОЛЬЯТТИ")
+    credentials = [
+        {"login": "oz12.dodo", "password": "oz12.dodo"},
+    ]
+elif choice == "20":
+    print("Вы выбрали КСТОВО")
+    credentials = [
+        {"login": "rp.kstovo.ms@gmail.com", "password": "metro123"},
+    ]
+else:
+    print("Вы ввели что-то, не то")
 
 # Установка веб-драйвера Chrome
 webdriver_service = Service(ChromeDriverManager().install())
@@ -74,7 +162,7 @@ for credential in credentials:
         submit_button = driver.find_element(By.ID, "submit")
         submit_button.click()
 
-        time.sleep(5)
+        time.sleep(15)
 
 
     def logout():
