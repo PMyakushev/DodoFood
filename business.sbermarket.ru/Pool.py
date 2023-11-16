@@ -6,11 +6,11 @@ def run_program(file_name):
 
 if __name__ == '__main__':
     # Создание пула процессов
-    pool = multiprocessing.Pool(6)
+    pool = multiprocessing.Pool(3)
 
     # Запуск трех файлов
-    pool.map(run_program, ['ParsingPageStoreOne.py', 'ParsingPageStoreTwo.py', 'ParsingPageStoreThree.py', 'ParsingPageStoreSix.py', 'ParsingPageStoreFive.py', 'ParsingPageStoreFour.py'])
-    # pool.map(run_program, ['ParsingPageStoreOne.py', 'ParsingPageStoreTwo.py', 'ParsingPageStoreThree.py'])
+    # pool.map(run_program, ['ParsingPageStoreOne.py', 'ParsingPageStoreTwo.py', 'ParsingPageStoreThree.py', 'ParsingPageStoreSix.py', 'ParsingPageStoreFive.py', 'ParsingPageStoreFour.py'])
+    pool.map(run_program, ['ParsingPageStoreOne.py', 'ParsingPageStoreTwo.py', 'ParsingPageStoreThree.py'])
     # Ожидание завершения всех процессов
     pool.close()
     pool.join()

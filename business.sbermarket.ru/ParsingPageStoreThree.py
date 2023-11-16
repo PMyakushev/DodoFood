@@ -31,20 +31,19 @@ for link in links:
     # Цикл для каждого клика
     tag_counter = 0
     while True:
-        stores = driver.find_elements(By.CSS_SELECTOR, 'li.Carousel_slide__qXWRh button.StoresItemCard_root__Shb2T')
+        stores = driver.find_elements(By.CSS_SELECTOR, 'li.Carousel_slide__Wg4C_ button.StoresItemCard_root__XjrcM')
         if tag_counter >= len(stores):
             break
 
         store = stores[tag_counter]
 
         time.sleep(1)
-        new_page_content = driver.page_source
-        new_page_soup = BeautifulSoup(new_page_content, 'html.parser')
-        city = new_page_soup.find('div', class_='AddressSelector_text__OGxZk').text.strip()
+        new_page_soup = BeautifulSoup(driver.page_source, 'html.parser')
+        city = new_page_soup.find('div', class_='AddressSelector_text__XB1ag').text.strip()
         print("Город:", city)
 
         # Получение первого тега
-        sellers = new_page_soup.find_all('div', class_='StoresItemOrderProductsNumber_wrapper__d3Aa3')
+        sellers = new_page_soup.find_all('div', class_='StoresItemOrderProductsNumber_wrapper__fxcNc')
         if len(sellers) > tag_counter:
             seller = sellers[tag_counter]
             imgTag = seller.find('img') if seller else None
@@ -53,20 +52,22 @@ for link in links:
         else:
             print("Больше нет тегов")
 
-        for product in new_page_soup.find_all('div', class_='ProductCard_root__K6IZK'):
+        for product in new_page_soup.find('div', class_='MultiSearchProductsGrid_root__ye_kY MultiSearch_productGrid__ZXhdl').find_all('li'):
             product_info = {}
-            name = product.find('h3', class_='ProductCard_title__iNsaD').text.strip()
-            print(name)
+            try:
+                name = product.find('h3', class_="ProductCard_title__iB_Dr").text.strip()
+                print(name)
+            except AttributeError:
+                name = None
             product_info['name'] = name if name else ""
 
             try:
-                price_one = product.find('div', class_='ProductCardPrice_price__Kv7Q7').text.strip()
+                price_one = product.find('div', class_='ProductCardPrice_price__zSwp0').text.strip()
                 print(price_one)
             except AttributeError:
                 price_one = None
-
             try:
-                price_two = product.find('div', class_='ProductCardPrice_vatInfo__0tm64').text.strip()
+                price_two = product.find('div', class_='ProductCardPrice_vatInfo__sn9fH').text.strip()
                 print(price_two)
             except AttributeError:
                 price_two = None

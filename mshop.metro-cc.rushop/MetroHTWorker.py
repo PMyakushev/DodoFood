@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import datetime
 
 # Открытие файла
-with open('data.html', 'r', encoding='utf-8') as file:
+with open('MetroFoodHTML.html', 'r', encoding='utf-8') as file:
     html = file.read()
 
 # Создание объекта BeautifulSoup для парсинга HTML
