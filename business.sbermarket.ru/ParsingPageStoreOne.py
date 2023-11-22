@@ -8,6 +8,7 @@ import datetime
 import time
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+import pandas as pd
 
 start_time = time.time()
 # Чтение ссылок из файла
@@ -51,42 +52,48 @@ for link in links:
             print("Первый тег:", imgalt)
         else:
             print("Больше нет тегов")
+        if imgalt == "ЛЕНТА" or imgalt == "METRO":
+            for product in new_page_soup.find('div', class_='MultiSearchProductsGrid_root__ye_kY MultiSearch_productGrid__ZXhdl').find_all('li'):
+                product_info = {}
+                try:
+                    name = product.find('h3', class_="ProductCard_title__iB_Dr").text.strip()
+                    print(name)
+                except AttributeError:
+                    name = None
+                product_info['name'] = name if name else ""
 
-        for product in new_page_soup.find('div', class_='MultiSearchProductsGrid_root__ye_kY MultiSearch_productGrid__ZXhdl').find_all('li'):
-            product_info = {}
-            try:
-                name = product.find('h3', class_="ProductCard_title__iB_Dr").text.strip()
-                print(name)
-            except AttributeError:
-                name = None
-            product_info['name'] = name if name else ""
+                try:
+                    price_one = product.find('div', class_='ProductCardPrice_price__zSwp0').text.strip()
+                    print(price_one)
+                except AttributeError:
+                    price_one = None
+                try:
+                    price_two = product.find('div', class_='ProductCardPrice_vatInfo__sn9fH').text.strip()
+                    print(price_two)
+                except AttributeError:
+                    price_two = None
 
-            try:
-                price_one = product.find('div', class_='ProductCardPrice_price__zSwp0').text.strip()
-                print(price_one)
-            except AttributeError:
-                price_one = None
-            try:
-                price_two = product.find('div', class_='ProductCardPrice_vatInfo__sn9fH').text.strip()
-                print(price_two)
-            except AttributeError:
-                price_two = None
+                product_info['price_one'] = price_one
+                product_info['price_two'] = price_two
+                product_info['date'] = datetime.datetime.now().strftime("%d.%m.%Y")
+                product_info['imgalt'] = imgalt if imgalt else ""
+                product_info['city'] = city
 
-            product_info['price_one'] = price_one
-            product_info['price_two'] = price_two
-            product_info['date'] = datetime.datetime.now().strftime("%d.%m.%Y")
-            product_info['imgalt'] = imgalt if imgalt else ""
-            product_info['city'] = city
+                with open('SberFoodParsing.csv', 'a', newline='', encoding='utf-8') as csvfile:
+                    fieldnames = ['name', 'price_one', 'price_two', 'city', 'date', 'imgalt']
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                    writer.writerow(product_info)
 
-            with open('SberFoodParsing.csv', 'a', newline='', encoding='utf-8') as csvfile:
-                fieldnames = ['name', 'price_one', 'price_two', 'city', 'date', 'imgalt']
-                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-                writer.writerow(product_info)
-
-        driver.execute_script("arguments[0].click();", store)
-        time.sleep(5)
-        tag_counter += 1
+            driver.execute_script("arguments[0].click();", store)
+            time.sleep(5)
+            tag_counter += 1
+        else:
+            tag_counter += 20
 
 end_time = time.time()
 execution_time = (end_time - start_time) / 60
 print(f"Время выполнения: {execution_time} минут")
+
+data = pd.read_csv('SberFoodParsing.csv')
+data.drop_duplicates(inplace=True)
+data.to_csv('SberFoodParsing.csv', index=False)
